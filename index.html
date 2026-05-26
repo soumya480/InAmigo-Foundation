@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InAmigo Foundation | Uniting Minds for A Change</title>
+    
+    <!-- Google Fonts for typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #10b981; /* Emerald Green */
+            --secondary-color: #059669; /* Darker Green for hover */
+            --dark-color: #1e293b;
+            --light-color: #f8fafc;
+            --text-color: #334155;
+            --card-bg: #ffffff;
+            --transition: all 0.3s ease;
+        }
+
+        html {
+            scroll-behavior: smooth; /* Enables smooth scrolling for anchor links */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            width: 80px;
+            height: 4px;
+            background: var(--primary-color);
+            display: block;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            opacity: 0.8;
+        }
+
+        .logo-img {
+            height: 45px;
+            width: 45px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            position: relative;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+            background-color: var(--dark-color);
+        }
+
+        .hero-slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            animation: heroFade 24s infinite;
+            z-index: 1;
+        }
+
+        .hero-slide::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(30, 41, 59, 0.6); /* Dark overlay to make text readable */
+        }
+
+        /* 4 images, each gets 6 seconds (24s total). Fade in takes 2s, stays 4s, fades out 2s */
+        @keyframes heroFade {
+            0% { opacity: 0; transform: scale(1); }
+            5% { opacity: 1; }
+            25% { opacity: 1; }
+            30% { opacity: 0; transform: scale(1.05); }
+            100% { opacity: 0; }
+        }
+
+        .slide-1 { background-image: url('https://images.unsplash.com/photo-1593113630400-ea4288922497?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); animation-delay: 0s; }
+        .slide-2 { background-image: url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); animation-delay: 6s; }
+        .slide-3 { background-image: url('https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); animation-delay: 12s; }
+        .slide-4 { background-image: url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80'); animation-delay: 18s; }
+
+        .hero-content {
+            position: relative;
+            z-index: 2; /* Keeps text above images */
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .about {
+            padding: 100px 0;
+            background-color: var(--card-bg);
+        }
+
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+
+        .about-image img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text .section-title {
+            text-align: left;
+        }
+
+        .about-text .section-title::after {
+            margin: 10px 0 0;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .projects {
+            padding: 100px 0;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: var(--transition);
+            border: 1px solid #e2e8f0;
+            display: block; /* Makes the entire <a> tag block level */
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: var(--primary-color);
+        }
+
+        .project-img-wrapper {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .project-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .project-card:hover .project-img-wrapper img {
+            transform: scale(1.1); /* Zooms image on hover */
+        }
+
+        .project-content {
+            padding: 25px;
+            text-align: center;
+        }
+
+        .project-content h3 {
+            color: var(--dark-color);
+            margin-bottom: 10px;
+            font-size: 1.4rem;
+        }
+
+        .learn-more {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .impact {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        .impact .section-title {
+            color: white;
+        }
+
+        .impact .section-title::after {
+            background: white;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .impact-item h4 {
+            font-size: 3.5rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .cta {
+            padding: 100px 0;
+            text-align: center;
+            background: linear-gradient(rgba(255,255,255,0.95), rgba(255,255,255,0.95)), url('https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover fixed;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 20px;
+        }
+
+        /* Volunteer Form Styles */
+        .volunteer-form-container {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+
+        .volunteer-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-group label {
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+            font-size: 0.95rem;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 12px 15px;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: 'Poppins', sans-serif;
+            transition: var(--transition);
+            background-color: #f8fafc;
+            color: var(--text-color);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
+            background-color: #ffffff;
+        }
+
+        .submit-btn {
+            width: 100%;
+            font-size: 1.1rem;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .success-msg {
+            display: none;
+            text-align: center;
+            padding: 40px 0;
+            color: var(--primary-color);
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .about-container { flex-direction: column; }
+            .about-text .section-title { text-align: center; }
+            .about-text .section-title::after { margin: 10px auto 0; }
+            .hero-content h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            
+            /* Form Responsiveness */
+            .volunteer-form {
+                grid-template-columns: 1fr;
+            }
+            .volunteer-form-container {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <nav>
+                <!-- Clickable Logo -->
+                <a href="#" class="logo" title="Go to Top">
+                    <img src="https://github.com/soumya480/InAmigo-Foundation/blob/52e426a132f3d9c009e4b7a7b3dc3a12dd4b321c/logo.jpeg" class="logo-img">
+                    InAmigo
+                </a>
+                <ul class="nav-links">
+                    <!-- Smooth scroll links -->
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#projects">Our Projects</a></li>
+                    <li><a href="#impact">Our Impact</a></li>
+                </ul>
+                <a href="#join" class="btn-primary">Join Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-slide slide-1"></div>
+        <div class="hero-slide slide-2"></div>
+        <div class="hero-slide slide-3"></div>
+        <div class="hero-slide slide-4"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Uniting Minds for A Change </h1>
+                <p>Welcome to the InAmigo Foundation. We are a youth-driven NGO dedicated to bringing positive change to society through education, environment, women empowerment, and animal welfare.</p>
+                <a href="#projects" class="btn-primary" style="padding: 15px 35px; font-size: 1.1rem;">Explore Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container about-container">
+            <!-- New Working Volunteers Image -->
+            <div class="about-image">
+                <img src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="InAmigo Volunteers working together">
+            </div>
+            <div class="about-text">
+                <h2 class="section-title">Who We Are</h2>
+                <p>InAmigos Foundation was founded on September 23, 2020, by Mr. Govind Shukla (Founder & CEO). It is a Section 8 registered non-profit organization, licensed by the Central Government. It has its base at Chhattisgarh. It holds 80G & 12A certifications, ensuring transparency, accountability and tax-exempt benefits for donors. Our foundation is also CSR-1 registered, allowing us to collaborate with corporate partners for impactful Corporate Social Responsibility (CSR) initiatives. Additionally, we are NITI Aayog registered, aligning our work with national development goals and hold the prestigious IAF ISO 9001:2015 certification, signifying our commitment to maintaining high-quality standards in operations and service delivery.</p>
+                <p>Our Key Initiatives 1. Project Seva - Providing food and clothing to the underprivileged. 2. Project Bachpanshala - Ensuring quality education for underprivileged children. 3. Project Jeev - Animal welfare, including rescue, protection and feeding. 4. Project Udaan - Women empowerment through skill development and financial independence. 5. Project Prakriti - Environmental conservation and sustainability efforts. 6. Project Vikas - Enhancing employability through skill development programs. With a strong network of dedicated professionals, volunteers and corporate partners, we work tirelessly to bring positive change in society. Our social media platforms actively showcase our impact, keeping our supporters informed and engaged. At InAmigos Foundation, we believe in the power of collective action. Every contribution is directed towards essential causes such as food distribution, education, women empowerment, animal welfare, environmental sustainability and social inclusion programs across India. Join Us in Making a Difference Together, we can create a more inclusive, compassionate and empowered society.</p>
+                <a href="#join" class="btn-primary" style="margin-top: 15px;">Become a Volunteer</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects">
+        <div class="container">
+            <h2 class="section-title">Our 6 Impactful Projects </h2>
+            
+            <div class="projects-grid">
+                <!-- Project 1 (Clickable) -->
+                <a href="#join" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1593113646773-028c64a8f1b8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Food Distribution">
+                    </div>
+                    <div class="project-content">
+                        <h3>🍚 Project Seva</h3>
+                        <p>Helping those in need with food, clothes, and essential supplies.</p>
+                        <span class="learn-more">Learn More &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Project 2 (Clickable) -->
+                <a href="#join" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://github.com/soumya480/InAmigo-Foundation/blob/52e426a132f3d9c009e4b7a7b3dc3a12dd4b321c/Bachpansala.jpg" alt="Children Education">
+                    </div>
+                    <div class="project-content">
+                        <h3>📚 Bachpanshala</h3>
+                        <p>Providing quality education, care, and a safe learning environment.</p>
+                        <span class="learn-more">Learn More &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Project 3 (Clickable) -->
+                <a href="#join" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1544568100-847a948585b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Animal Rescue">
+                    </div>
+                    <div class="project-content">
+                        <h3>🐾 Project Jeev</h3>
+                        <p>Supporting, rescuing, and providing medical care to stray animals.</p>
+                        <span class="learn-more">Learn More &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Project 4 (Clickable) -->
+                <a href="#join" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1573164713988-8665fc963095?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Women Empowerment">
+                    </div>
+                    <div class="project-content">
+                        <h3>🎓 Project Udaan</h3>
+                        <p>Empowering women with vocational skills and opportunities.</p>
+                        <span class="learn-more">Learn More &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Project 5 (Clickable) -->
+                <a href="#join" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Tree Plantation">
+                    </div>
+                    <div class="project-content">
+                        <h3>🌍 Project Prakriti</h3>
+                        <p>Protecting the environment through clean-up drives and plantations.</p>
+                        <span class="learn-more">Learn More &rarr;</span>
+                    </div>
+                </a>
+
+                <!-- Project 6 (Clickable) -->
+                <a href="#join" class="project-card">
+                    <div class="project-img-wrapper">
+                        <img src="https://images.unsplash.com/photo-1529390079861-591de354faf5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Youth Development">
+                    </div>
+                    <div class="project-content">
+                        <h3>🚀 Project Vikas</h3>
+                        <p>Helping youth grow through internships, and skill-building.</p>
+                        <span class="learn-more">Learn More &rarr;</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="impact">
+        <div class="container">
+            <h2 class="section-title">The Social Impact</h2>
+            <p style="max-width: 700px; margin: 0 auto; font-size: 1.1rem;">Every action counts. Through our dedicated campaigns and volunteers, we are creating a ripple effect of positivity. #InAmigos</p>
+            
+            <div class="impact-grid">
+                <div class="impact-item">
+                    <h4>50k+</h4>
+                    <p>Lives Touched</p>
+                </div>
+                <div class="impact-item">
+                    <h4>10k+</h4>
+                    <p>Trees Planted</p>
+                </div>
+                <div class="impact-item">
+                    <h4>5k+</h4>
+                    <p>Animals Rescued</p>
+                </div>
+                <div class="impact-item">
+                    <h4>1k+</h4>
+                    <p>Youth Empowered</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="join" class="cta">
+        <div class="container">
+            <h2>Ready to Make an Impact? </h2>
+            <p style="margin-bottom: 30px; font-size: 1.1rem; color: var(--text-color);">Join hands with the InAmigo Foundation. Fill out the application below to volunteer for one of our causes.</p>
+            
+            <div class="volunteer-form-container">
+                <!-- A success message that will show up when the form is submitted -->
+                <div id="form-success-msg" class="success-msg">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 10px;">🎉 Thank You!</h3>
+                    <p style="color: var(--text-color);">Your application has been successfully submitted. Our team will contact you shortly.</p>
+                </div>
+
+                <!-- The Form -->
+                <form id="volunteer-form" class="volunteer-form" onsubmit="event.preventDefault(); document.getElementById('volunteer-form').style.display='none'; document.getElementById('form-success-msg').style.display='block';">
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" placeholder="Enter your email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+91 00000 00000" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="interest">Area of Interest</label>
+                        <select id="interest" required>
+                            <option value="" disabled selected>Select a project</option>
+                            <option value="seva">🍚 Project Seva</option>
+                            <option value="bachpanshala">📚 Bachpanshala</option>
+                            <option value="jeev">🐾 Project Jeev</option>
+                            <option value="udaan">🎓 Project Udaan</option>
+                            <option value="prakriti">🌍 Project Prakriti</option>
+                            <option value="vikas">🚀 Project Vikas</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <label for="message">Why do you want to join us?</label>
+                        <textarea id="message" rows="4" placeholder="Tell us a bit about yourself and why you want to volunteer..." required></textarea>
+                    </div>
+                    
+                    <div class="form-group full-width">
+                        <button type="submit" class="btn-primary submit-btn">Submit Application</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Alternative Donation Support Button -->
+            <div style="margin-top: 40px;">
+                <p style="margin-bottom: 15px; color: var(--text-color); font-weight: 600;">Can't volunteer right now? Support us financially.</p>
+                <a href="#" class="btn-primary" style="padding: 12px 35px; background-color: var(--dark-color);">Make a Donation</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>Made with ❤️ by Soumyadeep Dinda the Interns of InAmigo Foundation.</p>
+            <p style="margin-top: 10px; opacity: 0.7; font-size: 0.9rem;">#InAmigos | Uniting Minds for A Change</p>
+            <p style="margin-top: 20px; font-size: 0.8rem;">&copy; 2024 InAmigo Foundation. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
